@@ -1,0 +1,184 @@
+{
+  "dataset_type": "SYNTHETIC_ONLY",
+  "clinical_use": false,
+  "checks_passed": 27,
+  "checks_total": 27,
+  "all_checks_passed": true,
+  "row_counts": {
+    "patients": 500,
+    "renal_measurements": 4293,
+    "clinical_variables": 500
+  },
+  "checks": [
+    {
+      "check": "patients_required_columns",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "check": "renal_required_columns",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "check": "clinical_required_columns",
+      "passed": true,
+      "missing": []
+    },
+    {
+      "check": "unique_patient_ids",
+      "passed": true,
+      "null_patient_ids": 0,
+      "duplicate_patient_ids": 0
+    },
+    {
+      "check": "unique_patient_calendar_day_measurements",
+      "passed": true,
+      "duplicate_measurements": 0,
+      "description": "Máximo una medición renal por paciente y día calendario"
+    },
+    {
+      "check": "unique_clinical_patient_rows",
+      "passed": true,
+      "duplicate_rows": 0
+    },
+    {
+      "check": "renal_patient_references",
+      "passed": true,
+      "orphan_patient_ids": 0
+    },
+    {
+      "check": "clinical_patient_references",
+      "passed": true,
+      "orphan_patient_ids": 0
+    },
+    {
+      "check": "patient_identifier_integrity",
+      "passed": true,
+      "invalid_or_blank_ids": {
+        "patients": 0,
+        "renal": 0,
+        "clinical": 0
+      },
+      "whitespace_padded_ids": {
+        "patients": 0,
+        "renal": 0,
+        "clinical": 0
+      },
+      "normalized_patient_id_collisions": 0,
+      "description": "Los identificadores deben ser no vacíos, no contener espacios externos y ser únicos tras normalización."
+    },
+    {
+      "check": "renal_foreign_key_integrity",
+      "passed": true,
+      "null_foreign_keys": 0,
+      "orphan_or_mismatched_patient_ids": 0,
+      "description": "La clave foránea debe coincidir exactamente con el identificador maestro."
+    },
+    {
+      "check": "clinical_foreign_key_integrity",
+      "passed": true,
+      "null_foreign_keys": 0,
+      "orphan_or_mismatched_patient_ids": 0,
+      "description": "La clave foránea debe coincidir exactamente con el identificador maestro."
+    },
+    {
+      "check": "clinical_patient_coverage",
+      "passed": true,
+      "patients_without_clinical_row": 0,
+      "clinical_ids_without_patient": 0,
+      "description": "En el conjunto sintético de demostración se espera una fila clínica por paciente."
+    },
+    {
+      "check": "renal_patient_coverage",
+      "passed": true,
+      "patients_without_renal_measurements": 0,
+      "renal_ids_without_patient": 0,
+      "description": "En el conjunto sintético de demostración se espera al menos una medición renal por paciente."
+    },
+    {
+      "check": "valid_measurement_dates",
+      "passed": true,
+      "invalid_dates": 0
+    },
+    {
+      "check": "finite_numeric_values",
+      "passed": true,
+      "non_finite_counts": {
+        "egfr": 0,
+        "creatinine": 0,
+        "sequence": 0,
+        "age": 0,
+        "bmi": 0
+      }
+    },
+    {
+      "check": "no_future_measurements_vs_reference_date",
+      "passed": true,
+      "reference_date": null,
+      "future_measurements": 0,
+      "note": "Solo se aplica cuando se proporciona explícitamente una fecha de referencia; no se infiere una fecha de corte."
+    },
+    {
+      "check": "valid_egfr_values",
+      "passed": true,
+      "missing_egfr_allowed": 100,
+      "out_of_range": 0
+    },
+    {
+      "check": "positive_creatinine",
+      "passed": true,
+      "missing_or_nonpositive": 0
+    },
+    {
+      "check": "age_demo_range",
+      "passed": true,
+      "invalid_age": 0
+    },
+    {
+      "check": "bmi_demo_range",
+      "passed": true,
+      "invalid_bmi": 0
+    },
+    {
+      "check": "valid_measurement_sequence",
+      "passed": true,
+      "invalid_sequence": 0
+    },
+    {
+      "check": "unique_sequence_per_patient",
+      "passed": true,
+      "duplicate_patient_sequences": 0
+    },
+    {
+      "check": "sequence_matches_chronology",
+      "passed": true,
+      "description": "La secuencia no debe retroceder al ordenar por fecha"
+    },
+    {
+      "check": "contiguous_patient_sequence",
+      "passed": true,
+      "description": "Cada paciente debe tener secuencias enteras consecutivas desde 1"
+    },
+    {
+      "check": "chronological_patient_records",
+      "passed": true
+    },
+    {
+      "check": "measurement_dates_not_null_after_normalization",
+      "passed": true,
+      "invalid_normalized_dates": 0
+    },
+    {
+      "check": "synthetic_identifier_prefix",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Controles técnicos de demostración; no son umbrales clínicos.",
+    "Los escenarios sintéticos no representan prevalencia ni historia natural.",
+    "Los valores faltantes de TFG son admisibles para probar escenarios incompletos; no se imputan en esta validación.",
+    "No se calcula diagnóstico ni rendimiento predictivo.",
+    "La ausencia de alertas técnicas no demuestra validez clínica."
+  ]
+}

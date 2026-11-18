@@ -1,0 +1,7 @@
+# Runtime dependencies required by the Streamlit synthetic-data dashboard.
+packaging>=23,<27
+pandas>=2.2,<4
+numpy>=1.26,<3
+joblib==1.5.3
+streamlit>=1.40,<2
+plotly>=5.20,<7

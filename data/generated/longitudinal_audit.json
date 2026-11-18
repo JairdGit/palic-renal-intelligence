@@ -1,0 +1,185 @@
+{
+  "source_max_date": "2024-12-24",
+  "cutoff_date": "2023-12-25",
+  "horizon_days": 365,
+  "landmarks": 500,
+  "unique_patients": 500,
+  "one_landmark_per_patient": true,
+  "uses_future_for_index_selection": false,
+  "selection_rule": "LAST eligible landmark <= source_max - 365 days with >=1 prior valid TFG; no future patient observations used",
+  "future_observations": 884,
+  "evaluable_365": 347,
+  "non_evaluable_365": 153,
+  "events_raw": 58,
+  "events_evaluable": 58,
+  "non_evaluable_policy": "censored/non-evaluable; target NaN; never recoded as no-event",
+  "outcome_definition": ">=40% decline from index eGFR (future eGFR <=60% of index), confirmed by another qualifying observation >=30 days later within 365 days",
+  "seed": 20261105,
+  "generator_version": "v1.0.0",
+  "traceability": {
+    "all_checks_passed": true,
+    "checks_passed": 10,
+    "checks_total": 10,
+    "checks": [
+      {
+        "check": "one_landmark_per_patient",
+        "passed": true,
+        "duplicate_landmarks": 0
+      },
+      {
+        "check": "source_output_patient_coverage",
+        "passed": true,
+        "source_patients_without_landmark": 0,
+        "landmark_patients_without_source": 0
+      },
+      {
+        "check": "index_record_lineage",
+        "passed": true,
+        "matched_index_records": 500,
+        "index_record_mismatches": 0
+      },
+      {
+        "check": "future_observation_count",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "last_future_date",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "evaluability_consistency",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "observation_status_consistency",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "event_confirmation_lineage",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "event_temporal_bounds",
+        "passed": true,
+        "mismatches": 0
+      },
+      {
+        "check": "censoring_target_policy",
+        "passed": true,
+        "mismatches": 0,
+        "description": "Non-evaluable targets must remain missing; evaluable targets must agree with the raw event flag."
+      }
+    ],
+    "scope": "synthetic source-to-landmark traceability; not clinical validation"
+  },
+  "aggregate_reconciliation": {
+    "all_checks_passed": true,
+    "checks_passed": 12,
+    "checks_total": 12,
+    "observed": {
+      "patients": 500,
+      "renal_measurements": 4293,
+      "clinical_variables": 500,
+      "landmarks": 500,
+      "unique_landmark_patients": 500,
+      "evaluable_365": 347,
+      "non_evaluable_365": 153,
+      "events_raw": 58,
+      "events_evaluable": 58,
+      "evaluable_no_event": 289,
+      "missing_targets": 153,
+      "status_counts": {
+        "EVALUABLE": 347,
+        "CENSORED_NON_EVALUABLE": 153
+      }
+    },
+    "checks": [
+      {
+        "check": "quality_row_counts_match",
+        "passed": true,
+        "expected": {
+          "patients": 500,
+          "renal_measurements": 4293,
+          "clinical_variables": 500
+        },
+        "observed": {
+          "patients": 500,
+          "renal_measurements": 4293,
+          "clinical_variables": 500
+        }
+      },
+      {
+        "check": "audit_landmark_count_matches",
+        "passed": true,
+        "reported": 500,
+        "observed": 500
+      },
+      {
+        "check": "unique_landmark_patient_count_matches",
+        "passed": true,
+        "reported": 500,
+        "observed": 500
+      },
+      {
+        "check": "evaluable_denominator_matches",
+        "passed": true,
+        "reported": 347,
+        "observed": 347
+      },
+      {
+        "check": "non_evaluable_denominator_matches",
+        "passed": true,
+        "reported": 153,
+        "observed": 153
+      },
+      {
+        "check": "raw_event_count_matches",
+        "passed": true,
+        "reported": 58,
+        "observed": 58
+      },
+      {
+        "check": "evaluable_event_count_matches",
+        "passed": true,
+        "reported": 58,
+        "observed": 58
+      },
+      {
+        "check": "evaluable_partition_is_complete",
+        "passed": true,
+        "evaluable": 347,
+        "events": 58,
+        "no_event": 289
+      },
+      {
+        "check": "non_evaluable_targets_remain_missing",
+        "passed": true,
+        "non_evaluable_with_target": 0,
+        "missing_targets": 153
+      },
+      {
+        "check": "evaluable_targets_are_binary",
+        "passed": true,
+        "invalid_evaluable_targets": 0
+      },
+      {
+        "check": "raw_and_evaluable_event_counts_reconcile",
+        "passed": true,
+        "raw_events": 58,
+        "evaluable_events": 58
+      },
+      {
+        "check": "landmark_ids_are_unique_and_complete",
+        "passed": true,
+        "null_ids": 0,
+        "duplicate_ids": 0
+      }
+    ],
+    "scope": "synthetic individual-to-aggregate reconciliation; not clinical validation"
+  }
+}

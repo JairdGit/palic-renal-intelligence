@@ -1,0 +1,38 @@
+PALIC Renal Intelligence v1.0.0 — resultados finales reproducibles del paquete
+
+Suite completa: 242/242 PASS
+Pruebas adversariales nuevas v1.0.0: 22/22 PASS
+Compilación/parseo AST: PASS (60 archivos Python)
+
+Regeneración sintética (seed=20261105):
+- Pacientes: 500
+- Mediciones renales: 4.293
+- Landmarks: 500
+- Evaluables a 365 días: 347
+- No evaluables: 153
+- Eventos sintéticos: 58
+- Calidad: 27/27 PASS
+- Trazabilidad: 10/10 PASS
+- Conciliación agregada: 12/12 PASS
+
+Aceptación de demostración: 6/6 PASS — READY_FOR_GUIDED_DEMO
+Preparación estática de liberación: 7/7 PASS — READY_FOR_FINAL_REVIEW
+Manifiesto estricto: 109 archivos verificados; 0 archivos no declarados.
+Perfil core: 2/2 PASS.
+Perfil app: 5/6 BLOCKED — Streamlit no instalado; navegador no ejecutado.
+Perfil model: 1/2 BLOCKED — scikit-learn instalado 1.8.0; requisito opcional fijado 1.9.0.
+Prueba visual/navegador: NO EJECUTADA.
+
+Diez auditorías adversariales:
+01 funcional/arquitectura: APROBADA.
+02 científica/metodológica: APROBADA CON LÍMITES.
+03 temporal/longitudinal: APROBADA en datos sintéticos.
+04 relacional/calidad: APROBADA en datos sintéticos.
+05 manifiesto/cadena de suministro: APROBADA en inventario local.
+06 entradas/salidas/exportaciones: APROBADA en casos cubiertos.
+07 frontera de modelo/afirmaciones: APROBADA CON LÍMITES.
+08 interfaz/UX/navegador: BLOQUEADA por entorno sin Streamlit.
+09 reproducibilidad/dependencias: BLOQUEADA PARCIALMENTE.
+10 preparación de concurso: BLOQUEADA PARCIALMENTE; faltan deck oficial y video público.
+
+Alcance: pruebas automatizadas y verificaciones reproducibles de software y datos sintéticos. No es pentest, auditoría externa, validación clínica, validación externa ni aprobación del concurso.

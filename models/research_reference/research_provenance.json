@@ -1,0 +1,165 @@
+{
+  "source_project": "PALIC-PY-10",
+  "source_version": "12.1.0",
+  "primary_model": "RandomForest_full_clinical",
+  "primary_predictor_family": "full_clinical",
+  "effective_predictor_count": 28,
+  "python": "3.13.13",
+  "scikit_learn": "1.9.0",
+  "published_evaluation": {
+    "model": "RandomForest_full_clinical",
+    "seed": 42,
+    "train_n": 10918,
+    "test_n": 4512,
+    "train_events": 84,
+    "test_events": 40,
+    "train_prevalence_pct": 0.7693716797948342,
+    "test_prevalence_pct": 0.8865248226950355,
+    "roc_auc": 0.868934481216458,
+    "pr_auc": 0.49558378406562537,
+    "brier": 0.006194185939461268,
+    "accuracy_050": 0.994459219858156,
+    "calibration": {
+      "intercept": -1.699047921644701,
+      "slope": 0.7375589955204069
+    },
+    "thresholds": [
+      {
+        "threshold": 0.005,
+        "tp": 36,
+        "tn": 2397,
+        "fp": 2075,
+        "fn": 4,
+        "sensitivity": 0.9,
+        "specificity": 0.5360017889087657,
+        "ppv": 0.01705352913311227,
+        "npv": 0.9983340274885465,
+        "accuracy": 0.5392287234042553,
+        "precision": 0.01705352913311227,
+        "recall": 0.9,
+        "f1": 0.03347280334728033
+      },
+      {
+        "threshold": 0.01,
+        "tp": 33,
+        "tn": 3146,
+        "fp": 1326,
+        "fn": 7,
+        "sensitivity": 0.825,
+        "specificity": 0.7034883720930233,
+        "ppv": 0.024282560706401765,
+        "npv": 0.9977798921661909,
+        "accuracy": 0.7045656028368794,
+        "precision": 0.024282560706401765,
+        "recall": 0.825,
+        "f1": 0.04717655468191565
+      },
+      {
+        "threshold": 0.02,
+        "tp": 32,
+        "tn": 3756,
+        "fp": 716,
+        "fn": 8,
+        "sensitivity": 0.8,
+        "specificity": 0.8398926654740608,
+        "ppv": 0.0427807486631016,
+        "npv": 0.997874601487779,
+        "accuracy": 0.8395390070921985,
+        "precision": 0.0427807486631016,
+        "recall": 0.8,
+        "f1": 0.08121827411167512
+      },
+      {
+        "threshold": 0.05,
+        "tp": 28,
+        "tn": 4182,
+        "fp": 290,
+        "fn": 12,
+        "sensitivity": 0.7,
+        "specificity": 0.9351520572450805,
+        "ppv": 0.0880503144654088,
+        "npv": 0.9971387696709585,
+        "accuracy": 0.9330673758865248,
+        "precision": 0.0880503144654088,
+        "recall": 0.7,
+        "f1": 0.1564245810055866
+      },
+      {
+        "threshold": 0.1,
+        "tp": 23,
+        "tn": 4342,
+        "fp": 130,
+        "fn": 17,
+        "sensitivity": 0.575,
+        "specificity": 0.9709302325581395,
+        "ppv": 0.1503267973856209,
+        "npv": 0.9961000229410415,
+        "accuracy": 0.9674202127659575,
+        "precision": 0.1503267973856209,
+        "recall": 0.575,
+        "f1": 0.23834196891191708
+      },
+      {
+        "threshold": 0.2,
+        "tp": 20,
+        "tn": 4430,
+        "fp": 42,
+        "fn": 20,
+        "sensitivity": 0.5,
+        "specificity": 0.990608228980322,
+        "ppv": 0.3225806451612903,
+        "npv": 0.9955056179775281,
+        "accuracy": 0.9862588652482269,
+        "precision": 0.3225806451612903,
+        "recall": 0.5,
+        "f1": 0.39215686274509803
+      },
+      {
+        "threshold": 0.5,
+        "tp": 18,
+        "tn": 4469,
+        "fp": 3,
+        "fn": 22,
+        "sensitivity": 0.45,
+        "specificity": 0.9993291592128801,
+        "ppv": 0.8571428571428571,
+        "npv": 0.9951013137385882,
+        "accuracy": 0.994459219858156,
+        "precision": 0.8571428571428571,
+        "recall": 0.45,
+        "f1": 0.5901639344262295
+      }
+    ],
+    "bootstrap_95": {
+      "roc_auc": {
+        "low": 0.7912359385555322,
+        "median": 0.8720636156698445,
+        "high": 0.9435623913838528,
+        "n": 1500
+      },
+      "pr_auc": {
+        "low": 0.3432525076915847,
+        "median": 0.50603209410345,
+        "high": 0.6644830699934747,
+        "n": 1500
+      },
+      "brier": {
+        "low": 0.004386889140208067,
+        "median": 0.0060905239862630725,
+        "high": 0.008120465208865982,
+        "n": 1500
+      }
+    },
+    "train_all_missing_removed": [
+      "Peso_AsOf",
+      "Talla_AsOf",
+      "BSA_Mosteller_AsOf",
+      "Cockcroft_mL_min_AsOf",
+      "Cockcroft_mL_min_1_73_AsOf"
+    ],
+    "n_predictors_after_train_missing_filter": 28,
+    "permutation": "EXECUTED",
+    "shap": "SKIPPED"
+  },
+  "note": "Metadata extracted from supplied research archive. No serialized model was loaded or executed."
+}
