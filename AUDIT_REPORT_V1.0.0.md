@@ -71,3 +71,12 @@ python run_release_readiness.py
 ```
 
 **Criterio de no sobreafirmación:** aprobar pruebas automatizadas y manifiesto no equivale a prueba visual, pentest, validación clínica, validación externa o aprobación del concurso.
+
+
+## Addendum de auditoría comparativa — H-05-02
+
+Los dos paquetes ZIP entregados (copia local y copia GitHub) contienen 122 entradas cada uno y son idénticos archivo por archivo. La revisión reprodujo 244 pruebas aprobadas, aceptación de demo 6/6 y readiness estático 7/7.
+
+Se corrigió el inventario estricto para excluir los metadatos internos `.git` y el archivo runtime exacto `.streamlit/secrets.toml`. Este último no debe almacenarse en el repositorio público; los secretos se configuran desde Streamlit. Otros archivos no declarados siguen provocando FAIL.
+
+**Estado:** corrección de código y pruebas aprobada en este entorno. Pendiente: confirmar que Streamlit está desplegando el commit corregido, instalar/ejecutar el entorno app y recorrer la interfaz en navegador. No se declara validación visual, clínica ni pentest.

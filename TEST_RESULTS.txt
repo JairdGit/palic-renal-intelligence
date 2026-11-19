@@ -36,3 +36,12 @@ Diez auditorías adversariales:
 10 preparación de concurso: BLOQUEADA PARCIALMENTE; faltan deck oficial y video público.
 
 Alcance: pruebas automatizadas y verificaciones reproducibles de software y datos sintéticos. No es pentest, auditoría externa, validación clínica, validación externa ni aprobación del concurso.
+
+
+ADDENDUM DE AUDITORÍA COMPARATIVA Y CORRECCIÓN H-05-02
+- Comparación ZIP local vs. ZIP GitHub: 122 entradas en cada uno; estructura idéntica; 0 archivos diferentes; ambos ZIP pasan CRC.
+- Corrección de inventario: .git y .streamlit/secrets.toml runtime excluidos del inventario estricto; otros archivos .streamlit siguen sujetos al control.
+- Suite tras corrección: 244 pruebas PASS; 17 subtests PASS; 2 advertencias de parsing de fechas (no fallos).
+- Aceptación de demo: 6/6 PASS; 110 archivos SHA-256 verificados.
+- Preparación estática: 7/7 PASS; manifiesto estricto PASS; 0 no declarados.
+- La ejecución visual real de Streamlit en navegador y la verificación del commit desplegado siguen pendientes.

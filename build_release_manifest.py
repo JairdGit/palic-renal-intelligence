@@ -6,8 +6,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 MANIFEST = ROOT / "RELEASE_MANIFEST.json"
-IGNORED_DIRS = {"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".venv", "venv"}
+IGNORED_DIRS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".venv", "venv"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
+# Streamlit runtime secrets are injected outside the public release artifact.
+IGNORED_RUNTIME_FILES = {".streamlit/secrets.toml"}
 
 
 def digest(path: Path) -> str:
@@ -21,13 +23,15 @@ def digest(path: Path) -> str:
 def main() -> None:
     inventory = {}
     for path in sorted(ROOT.rglob("*")):
-        if not path.is_file() or path == MANIFEST:
-            continue
         rel = path.relative_to(ROOT)
-        if any(part in IGNORED_DIRS for part in rel.parts) or path.suffix.lower() in IGNORED_SUFFIXES:
+        if any(part in IGNORED_DIRS for part in rel.parts):
             continue
         if path.is_symlink():
             raise SystemExit(f"No se admiten enlaces simbólicos en el paquete: {rel}")
+        if not path.is_file() or path == MANIFEST:
+            continue
+        if path.suffix.lower() in IGNORED_SUFFIXES or rel.as_posix() in IGNORED_RUNTIME_FILES:
+            continue
         inventory[rel.as_posix()] = digest(path)
     payload = {
         "product": "PALIC Renal Intelligence",

@@ -50,3 +50,14 @@ Cada auditoría buscó deliberadamente errores, incoherencias, fisuras y condici
 
 ## Regla de aprobación
 Los dominios 08, 09 y 10 requieren evidencia externa a las pruebas unitarias de este contenedor. Por tanto, el resultado es una **versión v1.0.0 de software con bloqueos de verificación de presentación**, no una certificación integral ni una postulación completa lista para enviar sin completar los entregables indicados.
+
+
+## Hallazgo adicional de auditoría comparativa de despliegue — v1.0.0-R1
+
+### H-05-02 — metadatos del checkout Git y secretos runtime contaminan el inventario estricto
+- **Severidad:** Alta (bloqueo de disponibilidad de la demo; no implica por sí mismo alteración de los datos).
+- **Evidencia:** el diagnóstico de Streamlit reportó archivos internos `.git/*` y `.streamlit/secrets.toml` como no declarados. El verificador estricto anterior no excluía el directorio `.git` ni el archivo runtime de secretos.
+- **Corrección:** el verificador y el generador de manifiesto excluyen `.git` y el archivo exacto `.streamlit/secrets.toml`. Otros archivos de `.streamlit` continúan sujetos al inventario estricto.
+- **Control de seguridad:** `.streamlit/secrets.toml` es runtime-only; no debe versionarse ni incluir credenciales en el repositorio público. Usar el gestor Secrets de Streamlit.
+- **Retest:** se agregan pruebas para confirmar que `.git` y el archivo runtime se excluyen, mientras que `.streamlit/config.toml` no declarado sigue provocando FAIL.
+- **Límite:** esta corrección aborda el patrón de archivos adicionales observado. Los cuatro archivos con hash fallido requieren comparar el checkout remoto real con el manifiesto y comprobar que el despliegue está en el commit actualizado.

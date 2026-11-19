@@ -26,8 +26,11 @@ def _reject_duplicate_keys(pairs):
     return result
 
 
-_IGNORED_DIRS = {"__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".venv", "venv"}
+_IGNORED_DIRS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", ".venv", "venv"}
 _IGNORED_SUFFIXES = {".pyc", ".pyo"}
+# Streamlit injects this runtime-only file when app secrets are configured.
+# It must never be committed to the public repository or included in the release manifest.
+_IGNORED_RUNTIME_FILES = {".streamlit/secrets.toml"}
 
 
 def verify_release_manifest(root: str | Path, *, strict: bool = False,
@@ -101,7 +104,9 @@ def verify_release_manifest(root: str | Path, *, strict: bool = False,
             if not path.is_file() and not path.is_symlink():
                 continue
             rel = path.relative_to(root)
-            if any(part in _IGNORED_DIRS for part in rel.parts) or path.suffix.lower() in _IGNORED_SUFFIXES:
+            if (any(part in _IGNORED_DIRS for part in rel.parts)
+                    or path.suffix.lower() in _IGNORED_SUFFIXES
+                    or rel.as_posix() in _IGNORED_RUNTIME_FILES):
                 continue
             relative = rel.as_posix()
             if relative == MANIFEST_NAME:

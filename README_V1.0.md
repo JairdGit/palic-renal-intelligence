@@ -39,7 +39,7 @@ python run_release_readiness.py
 ```bash
 python build_release_manifest.py
 ```
-El verificador de producción usa modo estricto: comprueba versión, hashes, archivos no declarados y enlaces simbólicos. El manifiesto no se incluye en su propia lista de hashes.
+El verificador de producción usa modo estricto: comprueba versión, hashes, archivos no declarados y enlaces simbólicos. Excluye metadatos internos de Git (`.git`) y el archivo runtime exacto `.streamlit/secrets.toml`; este último nunca debe versionarse y sus valores deben configurarse en Streamlit Secrets. El manifiesto no se incluye en su propia lista de hashes.
 
 ## Dependencias opcionales de modelado
 `requirements-model.txt` corresponde a un entorno opcional de investigación/modelado. No es necesario para el dashboard sintético y no habilita inferencia. Debe instalarse únicamente en un entorno compatible con el artefacto de investigación y después de verificar sus procedencia, hash y compatibilidad.

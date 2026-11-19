@@ -98,6 +98,31 @@ class Audit05ManifestAndSupplyChain(unittest.TestCase):
             self.assertEqual(result["status"], "FAIL")
             self.assertIn("unlisted.py", result["unlisted"])
 
+    def test_strict_manifest_ignores_git_metadata_and_streamlit_runtime_secrets(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "known.txt").write_text("known", encoding="utf-8")
+            digest = hashlib.sha256(b"known").hexdigest()
+            write_manifest(root, {"known.txt": digest})
+            (root / ".git" / "objects").mkdir(parents=True)
+            (root / ".git" / "HEAD").write_text("ref: refs/heads/main", encoding="utf-8")
+            (root / ".streamlit").mkdir()
+            (root / ".streamlit" / "secrets.toml").write_text("token='runtime-only'", encoding="utf-8")
+            result = verify_release_manifest(root, strict=True, expected_version="1.0.0")
+            self.assertEqual(result["status"], "PASS")
+            self.assertEqual(result["unlisted"], [])
+
+    def test_strict_manifest_still_rejects_unlisted_streamlit_config(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "known.txt").write_text("known", encoding="utf-8")
+            write_manifest(root, {"known.txt": hashlib.sha256(b"known").hexdigest()})
+            (root / ".streamlit").mkdir()
+            (root / ".streamlit" / "config.toml").write_text("[theme]", encoding="utf-8")
+            result = verify_release_manifest(root, strict=True, expected_version="1.0.0")
+            self.assertEqual(result["status"], "FAIL")
+            self.assertIn(".streamlit/config.toml", result["unlisted"])
+
     def test_strict_manifest_rejects_wrong_version(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
